@@ -11,7 +11,7 @@ namespace KDZ_CRM_MoiseevR
         public int Comp_id { get; set; }
         public int Comp_id_region { get; set; }
         public int Comp_id_owner { get; set; } //форма собственности
-        public int Comp_id_business_area { get; set } //сфера деятельности
+        public int Comp_id_business_area { get; set; } //сфера деятельности
         public int Comp_id_segment { get; set; } //сегмент сфферы деятельности
         public int Comp_id_city { get; set; }
         public string Comp_adress { get; set; }

@@ -23,6 +23,7 @@ namespace KDZ_CRM_MoiseevR
         public MainWindow()
         {
             InitializeComponent();
+            FrameMainWindow.Navigate(new LoginPage());
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Page x:Class="KDZ_CRM_MoiseevR.Administrator_Menu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Administrator_Menu">
+
+    <Grid>
+        <Button x:Name="Company_Search" Content="Компании" HorizontalAlignment="Left" Margin="189,44,0,0" VerticalAlignment="Top" Width="75" Click="Company_Search_Click"/>
+        <Button x:Name="Person_Search" Content="Контактные лица" HorizontalAlignment="Left" Margin="169,101,0,0" VerticalAlignment="Top" Width="107" Click="Person_Search_Click"/>
+        <Button x:Name="Contact_Search" Content="Контакты" HorizontalAlignment="Left" Margin="182,149,0,0" VerticalAlignment="Top" Width="75" Click="Contact_Search_Click"/>
+        <Button x:Name="Go_Out" Content="Выход" HorizontalAlignment="Left" Margin="199,261,0,0" VerticalAlignment="Top" Width="75" Click="Go_Out_Click"/>
+        <Button x:Name="User_Search" Content="Пользователи" HorizontalAlignment="Left" Margin="27,148,0,0" VerticalAlignment="Top" Width="94" Click="User_Search_Click"/>
+        <Button x:Name="References" Content="Справочники" HorizontalAlignment="Left" Margin="35,209,0,0" VerticalAlignment="Top" Width="89" Click="References_Click"/>
+        <Button x:Name="Protocol" Content="Протокол" HorizontalAlignment="Left" Margin="33,260,0,0" VerticalAlignment="Top" Width="75" Click="Protocol_Click"/>
+
+        <Frame Name="FrameAdministratorMenu" NavigationUIVisibility="Hidden" Margin="0,0,165,172">
+
+        </Frame>
+    </Grid>
+</Page>
