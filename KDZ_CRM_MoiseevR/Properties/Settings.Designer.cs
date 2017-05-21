@@ -42,5 +42,15 @@ namespace KDZ_CRM_MoiseevR.Properties {
                 return ((string)(this["CRM_beConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\CRM_Database.mdb")]
+        public string CRM_DatabaseConnectionString {
+            get {
+                return ((string)(this["CRM_DatabaseConnectionString"]));
+            }
+        }
     }
 }
