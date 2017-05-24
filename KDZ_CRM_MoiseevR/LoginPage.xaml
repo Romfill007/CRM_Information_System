@@ -12,12 +12,13 @@
         <TextBox x:Name="textBoxLogin" Height="25" Margin="11,193,10,0" 
                  TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <PasswordBox x:Name="passwordBox" Margin="10,229,10,0" VerticalAlignment="Top" Height="25"/>
-        <Button x:Name="buttonLogin" Content="Login" Margin="90,265,90,0" 
-                VerticalAlignment="Top" Width="120" Height="25" HorizontalAlignment="Center" Click="buttonLogin_Click"/>
+        <Button x:Name="buttonLogin" Content="Войти" Margin="159,265,21,0" 
+                VerticalAlignment="Top" Width="120" Height="25" HorizontalAlignment="Center" Click="buttonLogin_Click" IsDefault="True"/>
         <Image x:Name="LoginPicture" HorizontalAlignment="Left" Height="128" Margin="13,32,0,0" VerticalAlignment="Top" Width="274"/>
         <Frame Name="FrameLoginPage" NavigationUIVisibility="Hidden" Margin="0,0,0,126">
 
         </Frame>
+        <Button x:Name="buttonExit" Content="Выход из приложения" HorizontalAlignment="Left" Margin="13,262,0,0" VerticalAlignment="Top" Width="127" Height="30" Click="buttonExit_Click"/>
 
     </Grid>
 </Page>

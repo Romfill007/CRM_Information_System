@@ -58,19 +58,28 @@
     <Compile Include="Administrator_Menu.xaml.cs">
       <DependentUpon>Administrator_Menu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Company_Search.xaml.cs">
-      <DependentUpon>Company_Search.xaml</DependentUpon>
+    <Compile Include="Company_Search_Admin.xaml.cs">
+      <DependentUpon>Company_Search_Admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Contact_Search.xaml.cs">
-      <DependentUpon>Contact_Search.xaml</DependentUpon>
+    <Compile Include="Company_Search_User.xaml.cs">
+      <DependentUpon>Company_Search_User.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Contact_Search_Admin.xaml.cs">
+      <DependentUpon>Contact_Search_Admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Contact_Search_User.xaml.cs">
+      <DependentUpon>Contact_Search_User.xaml</DependentUpon>
     </Compile>
     <Compile Include="CRM_DatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRM_DatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Person_Search.xaml.cs">
-      <DependentUpon>Person_Search.xaml</DependentUpon>
+    <Compile Include="Person_Search_Admin.xaml.cs">
+      <DependentUpon>Person_Search_Admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Person_Search_User.xaml.cs">
+      <DependentUpon>Person_Search_User.xaml</DependentUpon>
     </Compile>
     <Compile Include="Protocol.xaml.cs">
       <DependentUpon>Protocol.xaml</DependentUpon>
@@ -88,11 +97,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Company_Search.xaml">
+    <Page Include="Company_Search_Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Contact_Search.xaml">
+    <Page Include="Company_Search_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Contact_Search_Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Contact_Search_User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,7 +133,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Person_Search.xaml">
+    <Page Include="Person_Search_Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Person_Search_User.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,20 +27,20 @@ namespace KDZ_CRM_MoiseevR
 
         private void Company_Search_Click(object sender, RoutedEventArgs e)
         {
-            Company_Search Company_Search = new Company_Search();
-            Company_Search.Show();
+            Company_Search_Admin Company_Search_Admin = new Company_Search_Admin();
+            Company_Search_Admin.Show();
         }
 
         private void Person_Search_Click(object sender, RoutedEventArgs e)
         {
-            Person_Search Person_Search = new Person_Search();
-            Person_Search.Show();
+            Person_Search_Admin Person_Search_Admin = new Person_Search_Admin();
+            Person_Search_Admin.Show();
         }
 
         private void Contact_Search_Click(object sender, RoutedEventArgs e)
         {
-            Contact_Search Contact_Search = new Contact_Search();
-            Contact_Search.Show();
+            Contact_Search_Admin Contact_Search_Admin = new Contact_Search_Admin();
+            Contact_Search_Admin.Show();
         }
 
         private void User_Search_Click(object sender, RoutedEventArgs e)

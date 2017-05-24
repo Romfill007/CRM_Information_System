@@ -23,12 +23,18 @@ namespace KDZ_CRM_MoiseevR
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page {
-        public LoginPage() {
+    
+
+    public partial class LoginPage : Page
+    {
+        public string UserName;
+        public LoginPage()
+        {
             InitializeComponent();
             // При загрузке страницы передаем фокус первому текстбоксу, чтобы
             // сразу можно было вводить имя пользователя
             textBoxLogin.Focus();
+            
         }
 
         private string CalculateHash(string password)
@@ -43,42 +49,47 @@ namespace KDZ_CRM_MoiseevR
 
             // Хэш зарегистрированного пользователя должен браться из хранилища
             // данных программы
+            if (textBoxLogin.Text == "" || passwordBox.Password == "")
+            {
+                MessageBox.Show("Не задан логин или пароль!", "LOGIN", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                textBoxLogin.Focus();
+                return;
+            }
             var hPwd = "";
             string bActive = "", bAdmin = "";
+            //bool bActive, bAdmin;
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\CRM_Database.mdb";
             OleDbConnection CRM_DB_Conn = new OleDbConnection(connectionString);
             try
             {
                 CRM_DB_Conn.Open();
-                MessageBox.Show("Подключено к базе данных:" + connectionString);
-                OleDbCommand Cmd = CRM_DB_Conn.CreateCommand();
-                /*
-                Cmd.CommandText = "UPDATE Employee_Users SET Hash_Pwd = '" + CalculateHash(passwordBox.Password) + "' WHERE Login = '" + textBoxLogin.Text + "'";
-                MessageBox.Show(Cmd.CommandText);
-                int iRes = Cmd.ExecuteNonQuery();
-                if (iRes < 1)
-                {
-                    MessageBox.Show("Non Update for " + Cmd.CommandText);
-                }
-                else MessageBox.Show("Result = " + iRes + " OK!!! " + Cmd.CommandText);
-                //CRM_DB_Conn.Close();
-                //CRM_DB_Conn.Open();
-                */
-                Cmd.CommandText = "SELECT Hash_Pwd, Active, Admin FROM Employee_Users WHERE Login = '" + textBoxLogin.Text + "'";
-                MessageBox.Show(Cmd.CommandText);
+                //MessageBox.Show("Успешно подключено к базе данных:\n" + connectionString);
+
+                string queryString = "";
+
+                queryString = "SELECT Employee_Users.Login, Employee_Users.Hash_Pwd, Employee_Users.Active, Employee_Users.Admin FROM Employee_Users WHERE Employee_Users.Login = '" + textBoxLogin.Text + "'";
+                //queryString = "UPDATE Employee_Users SET Hash_Pwd = '" + CalculateHash(passwordBox.Password) + "' WHERE Login = '" + textBoxLogin.Text + "'";
+
+                OleDbCommand Cmd = new OleDbCommand(queryString, CRM_DB_Conn);
+                //Cmd.CommandText = "SELECT Employees.FIO, Employees.Position, Employee_Users.Login, Employee_Users.Hash_Pwd, Employee_Users.Active, Employee_Users.Admin " +
+                //                  "FROM Employees RIGHT JOIN Employee_Users ON Employees.Empl_ID = Employee_Users.Empl_ID WHERE Employee_Users.Login = '" + textBoxLogin.Text + "'";
+                //MessageBox.Show(Cmd.CommandText);
                 OleDbDataReader Dr = Cmd.ExecuteReader();
-                while (Dr.Read())
+                //MessageBox.Show("Получено Fields = " + Dr.FieldCount + "; Rows = " + Dr.HasRows); // + "; Item[0] = " + Dr.GetValue(0));
+                if (Dr.Read())
                 {
-                    MessageBox.Show(Dr[0].ToString() + " Activ =" + Dr[1].ToString() + " Admin = " + Dr[2].ToString());
-                    hPwd = Dr[0].ToString();
-                    bActive = Dr[1].ToString();
-                    bAdmin = Dr[2].ToString();
+                    hPwd = Dr["Hash_Pwd"].ToString();
+                    bActive = Dr["Active"].ToString();
+                    //bActive = Dr.GetBoolean();
+                    bAdmin = Dr["Admin"].ToString();
+                    //MessageBox.Show("PassWd = " + hPwd + "; Active =" + bActive + "; Admin = " + bAdmin);
                 }
+                else MessageBox.Show("Нет пользователя: " + textBoxLogin.Text, "Авторизация");
                 Dr.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Нет подключения к базе данных:" + connectionString);
+                MessageBox.Show("Нет подключения к базе данных:\n" + connectionString + "\n\n" + ex.ToString(), "Application Error");
             }
             finally
             {
@@ -86,30 +97,65 @@ namespace KDZ_CRM_MoiseevR
             }
 
             //if (CalculateHash(passwordBox.Password) == hPwd)
-            if (passwordBox.Password == hPwd)
+            if (passwordBox.Password == hPwd && hPwd != "")
             {
-                MessageBox.Show("Login/password - CORRECT!!!");
-                if (bAdmin == "True")
+                //MessageBox.Show("Login/password - CORRECT!!!", "Авторизация");
+                if (bActive == "True")
                 {
-                    MessageBox.Show("Поздравляю! Вы Администратор.");
-                    NavigationService.Navigate(KDZ_CRM_Pages.Administrator_Menu);
+                   // MessageBox.Show("Поздравляю! Вы активный пользователь.", "Проверка на активность");
+                    if (bAdmin == "True")
+                    {
+                       // MessageBox.Show("Вы - Администратор.", "Проверка прав и полномочий");
+                        NavigationService.Navigate(KDZ_CRM_Pages.Administrator_Menu);
+                        KDZ_CRM_Pages.Administrator_Menu.Go_Out.Focus();
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Вы - обычный Пользователь.", "Проверка прав и полномочий");
+                        NavigationService.Navigate(KDZ_CRM_Pages.User_Menu);
+
+                        KDZ_CRM_Pages.User_Menu.Go_Out.Focus();
+
+                        UserName = textBoxLogin.Text;
+
+
+                        //User MyUser;
+                        //MyUser = new User();
+                        
+                        MainWindow.MyUser.Login = UserName;
+                        MainWindow.MyUser.User_CompanyList = new List<Company_Protected>();
+
+                        if (MainWindow.MyUser.User_CompanyList != null)
+                        {
+                            //MessageBox.Show("Companies for " + MainWindow.MyUser.Login);
+                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens1", Comp_ID = 1});
+                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens2", Comp_ID = 5 });
+                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens3" });
+                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens4", Comp_ID = 6 });
+                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens5" });
+                        }
+                        else MessageBox.Show("Не создан список компаний!!!");
+                    }
                 }
-                else {
-                    MessageBox.Show("Вы - Пользователь.");
-                    NavigationService.Navigate(KDZ_CRM_Pages.User_Menu);
-                }
+                else MessageBox.Show("Сожалею! Вы НЕ активный пользователь.", "Проверка на активность");
             }
             else
             {
-                MessageBox.Show("Incorrect login/password");
+                MessageBox.Show("Incorrect login/password", "Авторизация");
+                textBoxLogin.Focus();
+
             }
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // Using keyboard handling on the page level
-            if (e.Key == Key.Enter)
-                buttonLogin_Click(null, null);
+            //if (e.Key == Key.Enter)               buttonLogin_Click(null, null);
+        }
+
+        private void buttonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

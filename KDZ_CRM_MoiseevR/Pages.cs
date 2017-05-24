@@ -13,6 +13,8 @@ namespace KDZ_CRM_MoiseevR
     {
 
         private static LoginPage _loginPage = new LoginPage();
+        public static User _MyUser = new User();
+
 
         public static LoginPage LoginPage
         {

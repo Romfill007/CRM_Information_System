@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace KDZ_CRM_MoiseevR
 {
     /// <summary>
-    /// Логика взаимодействия для Person_Search.xaml
+    /// Логика взаимодействия для Contact_Search.xaml
     /// </summary>
-    public partial class Person_Search : Window
+    public partial class Contact_Search_Admin : Window
     {
-        public Person_Search()
+        public Contact_Search_Admin()
         {
             InitializeComponent();
         }

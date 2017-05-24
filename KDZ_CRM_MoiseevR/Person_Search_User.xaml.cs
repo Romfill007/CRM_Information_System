@@ -15,18 +15,17 @@ using System.Windows.Shapes;
 namespace KDZ_CRM_MoiseevR
 {
     /// <summary>
-    /// Логика взаимодействия для Company_Search.xaml
+    /// Логика взаимодействия для Person_Search_User.xaml
     /// </summary>
-    public partial class Company_Search : Window
+    public partial class Person_Search_User : Window
     {
-        public Company_Search()
+        public Person_Search_User()
         {
             InitializeComponent();
         }
 
         private void Back_Menu_Click(object sender, RoutedEventArgs e)
         {
-            //FrameCompanySearch.Navigate(User_Menu);
             this.Close();
         }
     }

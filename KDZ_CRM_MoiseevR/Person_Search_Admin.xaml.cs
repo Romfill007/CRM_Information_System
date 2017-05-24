@@ -10,22 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KDZ_CRM_MoiseevR
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Person_Search.xaml
     /// </summary>
-    /// 
-    public partial class MainWindow : Window
+    public partial class Person_Search_Admin : Window
     {
-        public MainWindow()
+        public Person_Search_Admin()
         {
             InitializeComponent();
-            FrameMainWindow.Navigate(new LoginPage());
         }
-        public static User MyUser = new User ();
+
+        private void Back_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
