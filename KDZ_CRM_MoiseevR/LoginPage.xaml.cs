@@ -44,6 +44,104 @@ namespace KDZ_CRM_MoiseevR
             return Convert.ToBase64String(hash);
         }
 
+        private int Company_From_DB (OleDbConnection CRM_DB_Conn, string sLogin)
+        {
+            int iReturn = 0;
+            try
+            {
+                CRM_DB_Conn.Open();
+                //MessageBox.Show("Успешно подключено к базе данных:\n" + connectionString);
+
+                string queryString = "";
+
+                queryString = "SELECT Company_Protected.Comp_ID,  Company_Protected.Comp_Name, City.City_Name, Company_Protected.Comp_Adress, Company_Protected.Comp_Website, Company_Protected.Comp_Email, Company_Protected.Comp_Contact_Telephone, Company_Protected.Comp_Additional_Info, " +
+                    "Company_Protected.Comp_ID_City FROM City INNER JOIN Company_Protected ON City.City_ID = Company_Protected.Comp_ID_City";
+                    //" '" + sLogin + "'";
+
+                OleDbCommand Cmd = new OleDbCommand(queryString, CRM_DB_Conn);
+                //MessageBox.Show(Cmd.CommandText);
+                OleDbDataReader Dr = Cmd.ExecuteReader();
+                //MessageBox.Show("Получено Fields = " + Dr.FieldCount + "; Rows = " + Dr.HasRows); 
+                while (Dr.Read())
+                {
+                    Company_Protected Comp = new Company_Protected(); //= MainWindow.MyUser.User_CompanyList.Last();
+                        Comp.Comp_Name = Dr["Comp_Name"].ToString();
+                        Comp.Comp_Website = Dr["Comp_Website"].ToString();
+                        Comp.Comp_Adress = Dr["Comp_Adress"].ToString();
+                        Comp.Comp_Contact_Telephone = Dr["Comp_Contact_Telephone"].ToString();
+                        Comp.City_Name = Dr["City_Name"].ToString();
+                        Comp.Comp_Email = Dr["Comp_Email"].ToString();
+                        Comp.Comp_Additional_Info = Dr["Comp_Additional_Info"].ToString();
+                        Comp.Comp_ID_City = Dr["Comp_ID_City"].ToString();
+                        Comp.Comp_ID = Dr["Comp_ID"].ToString();
+
+                        Comp.Company_PersonList = new List<Person>();
+                        Comp.Company_ContactList = new List<Contact>();
+                        Comp.Company_EquipmentList = new List<Equipment>();
+                     MainWindow.MyUser.User_CompanyList.Add(Comp); 
+             
+                    int iRes = Person_From_DB(CRM_DB_Conn, Comp);
+                    if ( iRes == 0) MessageBox.Show ("У компании\n" + Comp.Comp_Name + "\n не найдены контактные лица" );
+                    iReturn++;
+                }
+                Dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Нет подключения к базе данных:\n\n\n" + ex.ToString(), "Application Error");
+
+            }
+            finally
+            {
+                CRM_DB_Conn.Close();
+            }
+            return iReturn;
+        }
+
+        private int Person_From_DB(OleDbConnection CRM_DB_Conn, Company_Protected Comp)
+        {
+            int iReturn = 0;
+            try
+            {
+                //CRM_DB_Conn.Open();
+                //MessageBox.Show("Успешно подключено к базе данных:\n" + connectionString);
+
+                string queryString = "";
+
+                queryString = "SELECT Person.Person_ID, Person.Person_FIO, Person.Person_Position, Person.Person_Company_ID " +
+                                " FROM Person WHERE Person_Company_ID = " + Comp.Comp_ID.ToString();
+
+                OleDbCommand Cmd = new OleDbCommand(queryString, CRM_DB_Conn);
+                //MessageBox.Show(Cmd.CommandText);
+                OleDbDataReader Dr = Cmd.ExecuteReader();
+                //MessageBox.Show("Получено Fields = " + Dr.FieldCount + "; Rows = " + Dr.HasRows); 
+                while (Dr.Read())
+                {
+                    Comp.Company_PersonList.Add(new Person()
+                    {
+                        Person_ID = Dr["Person_ID"].ToString(),
+                        Person_FIO = Dr["Person_FIO"].ToString(),
+                        Person_Position = Dr["Person_Position"].ToString(),
+                        Comp_ID = Dr["Person_Company_ID"].ToString()
+                    });
+                    //MessageBox.Show("Получено Person_ID = " + Dr["Person_ID"].ToString() + "; Person_FIO = " + Dr["Person_FIO"].ToString()); 
+                    iReturn++;
+                }
+                Dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Нет подключения к базе данных:\n\n\n" + ex.ToString(), "Application Error");
+
+            }
+            finally
+            {
+                //CRM_DB_Conn.Close();
+            }
+            return iReturn;
+        }
+
+
         private void buttonLogin_Click(object sender, RoutedEventArgs e)
         {
 
@@ -117,22 +215,15 @@ namespace KDZ_CRM_MoiseevR
                         KDZ_CRM_Pages.User_Menu.Go_Out.Focus();
 
                         UserName = textBoxLogin.Text;
-
-
-                        //User MyUser;
-                        //MyUser = new User();
                         
                         MainWindow.MyUser.Login = UserName;
                         MainWindow.MyUser.User_CompanyList = new List<Company_Protected>();
 
-                        if (MainWindow.MyUser.User_CompanyList != null)
+                        int iComp = Company_From_DB(CRM_DB_Conn, UserName);
+                        if (  iComp  > 0)
                         {
-                            //MessageBox.Show("Companies for " + MainWindow.MyUser.Login);
-                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens1", Comp_ID = 1});
-                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens2", Comp_ID = 5 });
-                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens3" });
-                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens4", Comp_ID = 6 });
-                            MainWindow.MyUser.User_CompanyList.Add(new Company_Protected() { Comp_Name = "Siemens5" });
+                            MessageBox.Show("Получено " + iComp + " компаний!!!");
+
                         }
                         else MessageBox.Show("Не создан список компаний!!!");
                     }

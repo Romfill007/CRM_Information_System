@@ -10,25 +10,29 @@
         <Frame Name="FramePersonSearch_User" NavigationUIVisibility="Hidden" Margin="121,21,136,210">
 
         </Frame>
-        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="12,6,0,0" VerticalAlignment="Top" Width="103" Click="Back_Menu_Click" Grid.Column="2" Grid.Row="1"/>
-        <ListView x:Name="listView_Person" Grid.Column="1" Grid.Row="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <Button x:Name="Back_Menu" Content="Назад" HorizontalAlignment="Left" Margin="12,6,0,0" VerticalAlignment="Top" Width="103" Click="Back_Menu_Click" Grid.Column="2" Grid.Row="1"/>
+        <ListView x:Name="listView_Person" Grid.Column="1" Grid.Row="1" SelectionChanged="listView_Person_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Person_FIO}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="button_NewPers" Content="Новая запись" HorizontalAlignment="Left" Margin="16,37,0,0" VerticalAlignment="Top" Width="97" Grid.Column="2" Grid.Row="1"/>
-        <Button x:Name="button_Save" Content="Cохранить" HorizontalAlignment="Left" Margin="13,67,0,0" VerticalAlignment="Top" Width="101" Grid.Column="2" Grid.Row="1"/>
-        <Button x:Name="button_Delete" Content="Удалить запись" HorizontalAlignment="Left" Margin="14,102,0,0" VerticalAlignment="Top" Width="94" Grid.Column="2" Grid.Row="1"/>
+        <Button x:Name="button_NewPers" Content="Новая запись" HorizontalAlignment="Left" Margin="16,37,0,0" VerticalAlignment="Top" Width="97" Grid.Column="2" Grid.Row="1" Click="button_NewPers_Click"/>
+        <Button x:Name="button_Save" Content="Cохранить" HorizontalAlignment="Left" Margin="13,67,0,0" VerticalAlignment="Top" Width="101" Grid.Column="2" Grid.Row="1" Click="button_Save_Click"/>
+        <Button x:Name="button_Delete" Content="Удалить запись" HorizontalAlignment="Left" Margin="14,102,0,0" VerticalAlignment="Top" Width="94" Grid.Column="2" Grid.Row="1" Click="button_Delete_Click"/>
         <TextBlock x:Name="textBlock_IDPers" HorizontalAlignment="Left" Margin="10,8,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
-        <TextBox x:Name="textBox_ID_Pers" HorizontalAlignment="Left" Height="23" Margin="8,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="46" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="textBox_ID_Pers" HorizontalAlignment="Left" Height="23" Margin="8,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="46" Grid.Column="1" Grid.Row="2" TextChanged="textBox_ID_Pers_TextChanged"/>
         <TextBlock x:Name="textBlock_FIO_Pers" HorizontalAlignment="Left" Margin="86,8,0,0" TextWrapping="Wrap" Text="ФИО" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Width="41"/>
-        <TextBox x:Name="textBox_FIO_Pers" HorizontalAlignment="Left" Height="23" Margin="77,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="textBox_FIO_Pers" HorizontalAlignment="Left" Height="23" Margin="77,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" Grid.Column="1" Grid.Row="2" TextChanged="textBox_FIO_Pers_TextChanged"/>
         <TextBlock x:Name="textBlock_PersPos" HorizontalAlignment="Left" Margin="9,65,0,-69" TextWrapping="Wrap" Text="Должность" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
-        <TextBox x:Name="textBox_PersPos" HorizontalAlignment="Left" Height="23" Margin="5,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="138" Grid.Column="1" Grid.Row="2"/>
-        <TextBox x:Name="textBox_PersComp" HorizontalAlignment="Left" Height="23" Margin="151,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146" Grid.Column="1" Grid.Row="2"/>
-        <TextBlock x:Name="textBlock_PersComp" HorizontalAlignment="Left" Margin="154,67,0,0" TextWrapping="Wrap" Text="Компания" VerticalAlignment="Top" Width="80" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="textBox_PersPos" HorizontalAlignment="Left" Height="23" Margin="5,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="287" Grid.Column="1" Grid.Row="2" TextChanged="textBox_PersPos_TextChanged"/>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>

@@ -9,12 +9,10 @@
       Title="User_Menu">
 
     <Grid>
-        <Button x:Name="Company_Search" Content="Компании" HorizontalAlignment="Left" Margin="182,29,0,0" VerticalAlignment="Top" Width="75" Click="Company_Search_Click"/>
-        <Button x:Name="Person_Search" Content="Контактные лица" HorizontalAlignment="Left" Margin="172,89,0,0" VerticalAlignment="Top" Width="100" Click="Person_Search_Click"/>
-        <Button x:Name="Contact_Search" Content="Контакты" HorizontalAlignment="Left" Margin="187,135,0,0" VerticalAlignment="Top" Width="75" Click="Contact_Search_Click"/>
-        <Button x:Name="Go_Out" Content="Выход" HorizontalAlignment="Left" Margin="191,241,0,0" VerticalAlignment="Top" Width="75" Click="Go_Out_Click"/>
-        
-            <Frame Name="FrameUserMenu" NavigationUIVisibility="Hidden" Margin="1,169,27,83">
+        <Button x:Name="Company_Search" Content="Компании" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="137" Click="Company_Search_Click" Height="142"/>
+        <Button x:Name="Go_Out" Content="Выход" HorizontalAlignment="Left" Margin="116,227,0,0" VerticalAlignment="Top" Width="89" Click="Go_Out_Click" Height="50"/>
+
+        <Frame Name="FrameUserMenu" NavigationUIVisibility="Hidden" Margin="1,169,27,83">
 
         </Frame>
     </Grid>

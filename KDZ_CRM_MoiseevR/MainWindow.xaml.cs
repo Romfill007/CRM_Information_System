@@ -24,6 +24,7 @@ namespace KDZ_CRM_MoiseevR
         public MainWindow()
         {
             InitializeComponent();
+            
             FrameMainWindow.Navigate(new LoginPage());
         }
         public static User MyUser = new User ();
