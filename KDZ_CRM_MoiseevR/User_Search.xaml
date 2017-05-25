@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
         mc:Ignorable="d"
-        Title="User_Search" Height="300" Width="300">
+        Title="Пользователи" Height="277.152" Width="347.682">
     <Grid>
-        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="112,179,0,0" VerticalAlignment="Top" Width="111" Click="Back_Menu_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="dataGrid_User" Grid.Column="1" Grid.Row="1"/>
+
+        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="85,14,0,0" VerticalAlignment="Top" Width="111" Click="Back_Menu_Click" Grid.Column="1" Grid.Row="2"/>
         <Frame Name="FrameUserSearch" NavigationUIVisibility="Hidden" Margin="0,0,0,115">
 
         </Frame>

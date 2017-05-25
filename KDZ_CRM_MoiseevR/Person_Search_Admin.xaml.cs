@@ -28,5 +28,16 @@ namespace KDZ_CRM_MoiseevR
         {
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            KDZ_CRM_MoiseevR.CRM_DatabaseDataSet cRM_DatabaseDataSet = ((KDZ_CRM_MoiseevR.CRM_DatabaseDataSet)(this.FindResource("cRM_DatabaseDataSet")));
+            // Загрузить данные в таблицу Persons. Можно изменить этот код как требуется.
+            KDZ_CRM_MoiseevR.CRM_DatabaseDataSetTableAdapters.PersonsTableAdapter cRM_DatabaseDataSetPersonsTableAdapter = new KDZ_CRM_MoiseevR.CRM_DatabaseDataSetTableAdapters.PersonsTableAdapter();
+            cRM_DatabaseDataSetPersonsTableAdapter.Fill(cRM_DatabaseDataSet.Persons);
+            System.Windows.Data.CollectionViewSource personsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("personsViewSource")));
+            personsViewSource.View.MoveCurrentToFirst();
+        }
     }
 }

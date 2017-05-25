@@ -5,12 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
         mc:Ignorable="d"
-        Title="Contact_Search_User" Height="300" Width="300">
-    <Grid>
+        Title="Контактные лица" Height="356.623" Width="364.569">
+    <Grid Margin="0,0,13,6">
         <Frame Name="FrameContactSearch_User" NavigationUIVisibility="Hidden" Margin="5,50,0,135">
 
         </Frame>
-        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="169,217,0,0" VerticalAlignment="Top" Width="75" Click="Back_Menu_Click"/>
 
+        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="174,162,0,0" VerticalAlignment="Top" Width="94" Click="Back_Menu_Click" Grid.Column="1" Grid.Row="2" Height="28"/>
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="button_NewCont" Content="Новая запись" HorizontalAlignment="Left" Margin="26,128,0,0" VerticalAlignment="Top" Width="104" Grid.Column="1" Grid.Row="2"/>
+        <Button x:Name="button_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="29,168,0,0" VerticalAlignment="Top" Width="103" Grid.Column="1" Grid.Row="2"/>
+        <Button x:Name="button_Delete" Content="Удалить запись" HorizontalAlignment="Left" Margin="172,128,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_ContName" HorizontalAlignment="Left" Margin="7,7,0,0" TextWrapping="Wrap" Text="Информация о мероприятии" VerticalAlignment="Top" Width="165" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="textBox_ContName" HorizontalAlignment="Left" Height="23" Margin="9,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="282" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_Date" HorizontalAlignment="Left" Margin="13,63,0,0" TextWrapping="Wrap" Text="Дата" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="39" Grid.Column="1" Grid.Row="2">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.472"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBox x:Name="textBox_Date" HorizontalAlignment="Left" Height="23" Margin="15,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153" Grid.Column="1" Grid.Row="2"/>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="205,306,-13,-137" VerticalAlignment="Top" Width="100"/>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="411,83,-219,0" VerticalAlignment="Top" Width="100"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
     </Grid>
 </Window>

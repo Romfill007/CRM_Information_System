@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Главная" Height="350" Width="525">
     <Grid>
         <Frame Name="FrameMainWindow" NavigationUIVisibility="Hidden">
 

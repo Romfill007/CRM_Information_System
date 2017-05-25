@@ -5,11 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
         mc:Ignorable="d"
-        Title="Contact_Search" Height="300" Width="300">
-    <Grid>
-        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="179,182,0,0" VerticalAlignment="Top" Width="97" Click="Back_Menu_Click"/>
+        Title="Контактные лица" Height="343.709" Width="369.536" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:CRM_DatabaseDataSet x:Key="cRM_DatabaseDataSet"/>
+        <CollectionViewSource x:Key="contactsViewSource" Source="{Binding Contacts, Source={StaticResource cRM_DatabaseDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource contactsViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Width="97"  Height="30" Click="Back_Menu_Click" Grid.Column="1" Grid.Row="2"/>
         <Frame Name="FrameContactSearch_Admin" NavigationUIVisibility="Hidden" Margin="5,50,0,135">
 
         </Frame>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding}" SelectionChanged="dataGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -5,26 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KDZ_CRM_MoiseevR"
         mc:Ignorable="d"
-        Title="Company_Search_User" Height="311.024" Width="414.961">
+        Title="Компании" Height="430.491" Width="464.395">
     <Grid>
-        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Left" Margin="289,18,0,0" VerticalAlignment="Top" Width="111" Click="Back_Menu_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="240"/>
+        </Grid.RowDefinitions>
 
-        <TextBox x:Name="Comp_ID" HorizontalAlignment="Left" Height="23" Margin="9,168,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="50"/>
-        <TextBox x:Name="Comp_Name" HorizontalAlignment="Left" Height="23" Margin="78,168,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
-        <TextBox x:Name="Comp_Web" HorizontalAlignment="Left" Height="23" Margin="235,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="159"/>
-        <TextBox x:Name="City_Name" HorizontalAlignment="Left" Height="23" Margin="139,205,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="96"/>
-        <TextBox x:Name="Comp_Adress" HorizontalAlignment="Left" Height="23" Margin="247,205,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
-        <TextBox x:Name="Comp_Email" HorizontalAlignment="Left" Height="23" Margin="8,206,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Comp_Contact_Telephone" HorizontalAlignment="Left" Height="23" Margin="8,244,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Comp_Additional_Info" HorizontalAlignment="Left" Height="23" Margin="142,243,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="256"/>
-        <Button x:Name="Button_Save" Content="Новая запись" HorizontalAlignment="Left" Margin="290,53,0,0" VerticalAlignment="Top" Width="107"/>
-        <Button x:Name="Button_Delete" Content="Удалить запись" HorizontalAlignment="Left" Margin="295,86,0,0" VerticalAlignment="Top" Width="106" Click="Button_Delete_Click"/>
-        <ListView x:Name="Company_listView" HorizontalAlignment="Left" Height="132" Margin="11,13,0,0" VerticalAlignment="Top" Width="267">
+
+        <Button x:Name="Back_Menu" Content="Назад в меню" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Width="120" Height="25" Click="Back_Menu_Click" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <TextBox x:Name="Comp_ID" HorizontalAlignment="Left" Height="23" Margin="4,32,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="38" TextChanged="Comp_ID_TextChanged" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Name" HorizontalAlignment="Left" Height="23" Margin="69,32,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="205" TextChanged="Comp_Name_TextChanged" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Web" HorizontalAlignment="Left" Height="23" Margin="6,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145" Grid.Column="2" Grid.Row="2"/>
+        <TextBox x:Name="City_Name" HorizontalAlignment="Left" Height="23" Margin="142,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="129" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Adress" HorizontalAlignment="Left" Height="23" Margin="6,87,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="144" Grid.Column="2" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Email" HorizontalAlignment="Left" Height="23" Margin="5,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Contact_Telephone" HorizontalAlignment="Left" Height="23" Margin="65,147,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="188" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Comp_Additional_Info" HorizontalAlignment="Left" Height="23" Margin="8,202,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="256" Grid.Column="1" Grid.Row="2"/>
+        <ListView x:Name="Company_listView" BorderThickness="1" SelectionChanged="Company_listView_SelectionChanged" Grid.Column="1" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
+
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Comp_Name}"></TextBlock>
                     </Grid>
@@ -32,5 +43,18 @@
             </ListView.ItemTemplate>
 
         </ListView>
+        <Button x:Name="Button_Delete" Content="Удалить запись" HorizontalAlignment="Stretch" Margin="10,45,10,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Delete_Click" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="textBlock_IDComp" HorizontalAlignment="Left" Margin="6,11,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Grid.Column="1" Width="21" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_CompName" HorizontalAlignment="Left" Margin="117,12,0,0" TextWrapping="Wrap" Text="Название" VerticalAlignment="Top" Width="71" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_CompWeb" HorizontalAlignment="Left" Margin="13,7,0,0" TextWrapping="Wrap" Text="Веб-сайт" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="textBlock_CompEmail" HorizontalAlignment="Left" Margin="6,64,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Grid.Column="1" Width="36" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_CompCity" HorizontalAlignment="Left" Margin="161,62,0,0" TextWrapping="Wrap" Text="Город" VerticalAlignment="Top" Grid.Column="1" Width="56" Grid.Row="2" RenderTransformOrigin="0.891,0.446"/>
+        <TextBlock x:Name="textBlock_CompAdr" HorizontalAlignment="Left" Margin="13,60,0,0" TextWrapping="Wrap" Text="Адрес" VerticalAlignment="Top" Grid.Column="2" Height="21" Width="99" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="textBlock_CompPhone" HorizontalAlignment="Left" Margin="68,125,0,0" TextWrapping="Wrap" Text="Контактный телефон" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock x:Name="textBlock_CompAdINfo" HorizontalAlignment="Left" Margin="12,178,0,0" TextWrapping="Wrap" Text="Дополнительная информация" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Width="245"/>
+        <Button x:Name="button_NewComp" Content="Новая запись" HorizontalAlignment="Stretch" Margin="10,80,10,0" VerticalAlignment="Top" Width="120" Height="25" Click="button_NewComp_Click" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_Save" Content="Сохранить" HorizontalAlignment="Stretch" Margin="10,115,10,0" VerticalAlignment="Top" Width="120" Height="25" Click="button_Save_Click" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_Person" Content="Контактные лица" Grid.Column="2" HorizontalAlignment="Left" Margin="13,168,0,0" Grid.Row="2" VerticalAlignment="Top" Width="131" Height="29"/>
+        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="259,-89,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Window>

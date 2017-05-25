@@ -28,5 +28,21 @@ namespace KDZ_CRM_MoiseevR
         {
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            KDZ_CRM_MoiseevR.CRM_DatabaseDataSet cRM_DatabaseDataSet = ((KDZ_CRM_MoiseevR.CRM_DatabaseDataSet)(this.FindResource("cRM_DatabaseDataSet")));
+            // Загрузить данные в таблицу Contacts. Можно изменить этот код как требуется.
+            KDZ_CRM_MoiseevR.CRM_DatabaseDataSetTableAdapters.ContactsTableAdapter cRM_DatabaseDataSetContactsTableAdapter = new KDZ_CRM_MoiseevR.CRM_DatabaseDataSetTableAdapters.ContactsTableAdapter();
+            cRM_DatabaseDataSetContactsTableAdapter.Fill(cRM_DatabaseDataSet.Contacts);
+            System.Windows.Data.CollectionViewSource contactsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("contactsViewSource")));
+            contactsViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
