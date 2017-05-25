@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace KDZ_CRM_MoiseevR
 {
@@ -35,6 +37,45 @@ namespace KDZ_CRM_MoiseevR
         private void Go_Out_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void button_Restore_Click(object sender, RoutedEventArgs e)
+        {
+            string sFileName = "CRM.xml";
+            using (var fs = new FileStream(sFileName, FileMode.Open))
+            {
+                if (fs == null)
+                {
+                    MessageBox.Show("Файл " + sFileName + "\n не найден!!!", "Открытие файла");
+                }
+                else
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(User));
+                    MainWindow.MyUser = (User)xml.Deserialize(fs);
+                    MessageBox.Show("Файл " + sFileName + "\n загружен!!!");
+
+                }
+            }
+
+        }
+
+        private void button_SaveAll_Click(object sender, RoutedEventArgs e)
+        {
+            string sFileName = "CRM.xml";
+            using (var fs = new FileStream(sFileName, FileMode.Create))
+            {
+                if (fs == null)
+                {
+                    MessageBox.Show("Файл " + sFileName + "\n не создан!!!", "Создание файла");
+                }
+                else
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(User));
+                    xml.Serialize(fs, MainWindow.MyUser);
+                    MessageBox.Show("Файл " + sFileName + "\n сохранен!!!");
+
+                }
+            }
         }
     }
 }

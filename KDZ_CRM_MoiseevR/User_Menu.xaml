@@ -15,5 +15,7 @@
         <Frame Name="FrameUserMenu" NavigationUIVisibility="Hidden" Margin="1,169,27,83">
 
         </Frame>
+        <Button x:Name="button_SaveAll" Content="Сохранить в файл" HorizontalAlignment="Left" Margin="166,40,0,0" VerticalAlignment="Top" Width="106" Height="28" Click="button_SaveAll_Click"/>
+        <Button x:Name="button_Restore" Content="Загрузить из файла" HorizontalAlignment="Left" Margin="164,122,0,0" VerticalAlignment="Top" Width="111" Height="31" Click="button_Restore_Click"/>
     </Grid>
 </Page>
